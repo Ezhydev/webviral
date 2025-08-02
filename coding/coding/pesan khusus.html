@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Game Tebak Angka Sederhana</title>
+
+<style>
+  body {
+    background-image: url('image/bg-ayang.jpg');
+    background-position: center;
+    font-family: Arial, sans-serif;
+    color: orange;
+    text-align: center;
+    margin-top: 50px;
+  }
+  input[type="number"] {
+    width: 50px;
+  }
+  #message {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+<h1>Tebak Angka</h1>
+<p>Saya memikirkan angka antara 1 dan 100. Coba tebak!</p>
+<input type="number" id="guessInput" min="1" max="100"/>
+<button onclick="checkGuess()">Tebak!</button>
+<a href="website.html">kembali</a>
+
+<div id="message"></div>
+
+<script>
+  const secretNumber = Math.floor(Math.random() * 100) + 1;
+  let attempts = 0;
+
+  function checkGuess() {
+    const userGuess = Number(document.getElementById('guessInput').value);
+    const messageDiv = document.getElementById('message');
+    attempts++;
+
+    if (userGuess === secretNumber) {
+      messageDiv.innerHTML = `Selamat! Kamu menebak dengan benar dalam ${attempts} percobaan!`;
+    } else if (userGuess < secretNumber) {
+      messageDiv.innerHTML = 'Tebakanmu terlalu rendah!';
+    } else if (userGuess > secretNumber) {
+      messageDiv.innerHTML = 'Tebakanmu terlalu tinggi!';
+    } else {
+      messageDiv.innerHTML = 'Masukkan angka yang valid.';
+    }
+  }
+</script>
+
+</body>
+</html>
